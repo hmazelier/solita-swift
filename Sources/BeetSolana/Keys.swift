@@ -33,6 +33,7 @@ public class BeetPublicKey: ScalarFixedSizeBeet {
 }
 
 public enum KeysTypeMapKey: String {
+    case pubkey
     case publicKey
 }
 
@@ -40,4 +41,5 @@ public typealias KeysTypeMap = (KeysTypeMapKey, SupportedTypeDefinition)
 
 public let keysTypeMap: [KeysTypeMap] = [
     (KeysTypeMapKey.publicKey, SupportedTypeDefinition(beet: ".init(value: .scalar(BeetPublicKey()))", isFixable: false, sourcePack: BEET_SOLANA_PACKAGE, swift: "PublicKey", letpack: SOLANA_WEB3_PACKAGE)),
+    (KeysTypeMapKey.pubkey, SupportedTypeDefinition(beet: ".init(value: .scalar(BeetPublicKey()))", isFixable: false, sourcePack: BEET_SOLANA_PACKAGE, swift: "PublicKey", letpack: SOLANA_WEB3_PACKAGE)),
 ]

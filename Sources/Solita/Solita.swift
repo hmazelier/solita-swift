@@ -1,5 +1,4 @@
 import PathKit
-import SwiftCLI
 
 public class Solita {
     public let idl: Idl

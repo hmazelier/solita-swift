@@ -34,8 +34,13 @@ class SolitaRenderCommand: Command {
             stdout <<< "File is not readable: \(path)"
             return
         }
-        let idl = try! getDencoder().decode(Idl.self, from: path.read())
-        let solita = Solita(idl: idl, projectName: projectName ?? "Generated", accountsHaveImplicitDiscriminator: accountsHaveImplicitDiscriminator ?? false, programId: programId)
+        let idl = try! IdlMapper.latest.mapper(path.read(), getDencoder())
+        let solita = Solita(
+            idl: idl,
+            projectName: projectName ?? "Generated",
+            accountsHaveImplicitDiscriminator: accountsHaveImplicitDiscriminator ?? false,
+            programId: programId
+        )
         solita.renderAndWriteTo(outputDir: outputDir)
     }
 }
